@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>文明用语转换器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            resize: vertical;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e6ffe6;
+            border: 1px solid #b3ffb3;
+            min-height: 100px;
+            white-space: pre-wrap; /* 保留换行符 */
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>文明用语转换器</h1>
+        <label for="inputText">输入文本：</label>
+        <textarea id="inputText" placeholder="请输入包含不文明用语的文本..."></textarea>
+        <button onclick="replaceVulgarWords()">转换</button>
+        <h2>转换结果：</h2>
+        <div class="output" id="outputText"></div>
+    </div>
+
+    <script>
+        // 不文明用语与文明用语的映射
+        const vulgarToCivil = {
+            "卧槽": "哇塞",
+            "我艹": "哇塞",
+            "我操": "哇塞",
+            "他妈的": "丫的",
+            "踏马的": "丫的",
+            "傻逼": "笨蛋",
+            "蠢货": "不聪明的人",
+            "妈的": "该死",
+            "操": "喜欢",
+            "他娘的": "丫的",
+            "你妈": "令堂",
+            "废物": "放错位置的资源",
+            "滚你妈的": "请离开",
+            "去你的": "请你离开",
+            "死全家": "祝福你全家顺利",
+            "JB": "朋友",
+            "咪的": "我的",
+            "SB": "笨蛋",
+            "草泥马": "友善",
+            "欠操": "需要帮助",
+            "屎坑": "脏乱",
+            "垃圾": "不理想",
+            "王八蛋": "不诚实的人",
+            "狗日的": "讨厌的人",
+            "混蛋": "令人失望的人",
+            "见鬼去吧": "别这样",
+            "闭嘴": "请安静",
+            "去死": "请反思",
+            "滚蛋": "请离开",
+            "去你的": "请你离开",
+            "奶奶的": "非常",
+            "屁眼": "不当部位",
+            "肏": "亲爱的",
+            "鸡吧": "亲爱的",
+            "鸡把": "亲爱的",
+            "鸡八": "亲爱的",
+            "鸡8": "亲爱的",
+            // 你可以根据需要继续添加更多词汇
+        };
+
+        /**
+         * 替换文本中的不文明用语
+         */
+        function replaceVulgarWords() {
+            let input = document.getElementById('inputText').value;
+            let output = input;
+
+            // 遍历映射表，进行替换
+            for (let [vulgar, civil] of Object.entries(vulgarToCivil)) {
+                // 使用正则表达式进行全局替换，忽略大小写
+                let regex = new RegExp(vulgar, 'g');
+                output = output.replace(regex, civil);
+            }
+
+            document.getElementById('outputText').innerText = output;
+        }
+    </script>
+</body>
+</html>
